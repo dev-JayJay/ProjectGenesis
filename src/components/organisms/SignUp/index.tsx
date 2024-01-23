@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import style from './style.module.css'
 import styled from 'styled-components'
+import { Button } from '@/components/atoms/button'
 
 export const Container = styled.div`
 width: 90%;
@@ -60,7 +61,7 @@ function  Sign_Up() {
             width={100}
             height={100}
             />
-            <h5 className={style.h5}>Project-Genesis</h5>
+            <h5 className={style.h5}>Sign Up</h5>
             {/* <div className={style.hr}>
                 <hr/><span>Sign Up</span><hr/>
             </div> */}
@@ -84,7 +85,7 @@ function  Sign_Up() {
                 <label>Retype Password</label>
                 <input type='Email' placeholder='re-enter password' />
             </Div>
-            <button>Sign Up</button>
+            <Button>Sign Up</Button>
            </Container>
         </form>
     </section>
