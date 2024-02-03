@@ -4,27 +4,79 @@ import { Lable } from '@/components/atoms/lable'
 import React from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
+import { useState } from 'react'
+
+// export interface LoginResponse {
+//   ok: boolean;
+//   status: number;
+//   message: string;
+//   error: string;
+//   // Add other properties if needed
+// }
+
 
 function Login() {
+  const [identifier, setIdentifier] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const handleLogin = async () => {
+    try {
+      const apiUrl = await fetch('https://compliant-system.vercel.app/api/v1/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ identifier, password }),
+      });
+      if (!apiUrl.ok) {
+        // If the apiUrl status is not OK, handle the error Message
+        const errorData = await apiUrl.json();
+        setError(errorData.error);
+        setSuccessMessage('');
+        return;
+      }
+      // If the apiUrl status is OK, handle the Success Message
+      const successData = await apiUrl.json();
+      setSuccessMessage(successData.message);
+      setError('');
+    } catch (error) {
+      console.error('Error during login:', error);
+    }
+  }
   return (
     <LoginContainer>
         <Image
-            src='/assets/images/privacy.png'
-            alt='sign_up icon'
-            width={100}
-            height={100}
-            />
+        src='/assets/images/privacy.png'
+        alt='sign_up icon'
+        width={100}
+        height={100}
+        />
             <h5>Login</h5>
+            {error && <p style={{ color: 'red',textAlign:'center'}}>{error}</p>}
+            {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
         <form>
         <Lable> Admission number or Email</Lable>
-        <Input type={`text`} placeholder={`enter admission number or Email`} />
+        <input 
+        type='text'  
+        value={identifier}
+        placeholder='enter admission number or email'
+        onChange={(e) => setIdentifier(e.target.value)}
+        />
         <Lable> Password</Lable>
-        <Input type={`text`} placeholder={`enter password`} />
-        <Button>Login</Button>
+        <input 
+        type='password'  
+        placeholder='enter password'
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button onClick={handleLogin}>Login</Button>
         </form>
     </LoginContainer>
   )
 }
+
 
 export default Login
 

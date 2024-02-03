@@ -6,7 +6,7 @@ import Login from '@/components/molecules/Login';
 export default function Home() {
   return (
     <main className={style.body}>
-      <Sign_Up />
+      {/* <Sign_Up /> */}
       <Login />
     </main>
   );

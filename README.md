@@ -1,3 +1,6 @@
+{"ok":true,"status":201,"message":"Student created successfully","body":{"user":{"role":"student","id":5,"email":"jayjay@gmail.com","fullname":"jay jay","admissionNumber":"123456789","updatedAt":"2024-02-03T09:00:58.746Z","createdAt":"2024-02-03T09:00:58.746Z"}}}
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
