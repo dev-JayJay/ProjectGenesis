@@ -92,4 +92,4 @@ function  Sign_Up() {
   )
 }
 
-export default Sign_Up
+export default Sign_Up;
